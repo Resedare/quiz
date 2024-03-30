@@ -56,6 +56,9 @@ const questionName = document.querySelector('.question-name'), // названи
     numberOfAllQuestions = document.querySelector('.number-of-all-questions');
 
 const btnNext = document.querySelector('.options--next'); // кнопка далее
+const btnBack = document.querySelector('.result-button'); // кнопка вернуться
+
+const modal = document.querySelector('.quiz-over__modal'); // модальное окно
 
 let indexOfQuestion = 0 // текущий вопрос
 let indexOfPage = 0; // текущая страница
@@ -99,7 +102,9 @@ function randomQuestion() {
 
 
 function quizOver() {
-    alert(`Вы набрали ${score} верных ответов!`)
+    modal.classList.remove('hide')
+    const result = document.querySelector('.quiz-result');
+    result.innerHTML = `Ваш результат ${score} из ${questions.length}`
 }
 
 const checkAnswer = el => {
@@ -140,3 +145,6 @@ const validate = () => {
 }
 
 btnNext.addEventListener('click', validate)
+btnBack.addEventListener('click', () => {
+    window.location.reload()
+})
