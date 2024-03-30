@@ -22,41 +22,26 @@
                 <button class="button quiz__button--start">Начать викторину</button>
             </div>
 
-            <div class="quiz__block">
+            <div class="quiz__block hide">
                 <div class="block__header">
-                    <h2>Название вопроса</h2>
-                    <div class="block__current-question">1/5</div>
+                    <h2 class="question-name">Название вопроса</h2>
+                    <div class="block__current-question">
+                        <span class="number-of-question">1</span>/<span class="number-of-all-questions"></span>
+                    </div>
                 </div>
                 <div class="block__questions">
-                    <ul class="quiz__list" id="list">
-                        <li>
-                            <label>
-                                <input type="radio" class="answer" name="answer" />
-                                <span>Ответ...</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" class="answer" name="answer" />
-                                <span>Ответ...</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" class="answer" name="answer" />
-                                <span>Ответ...</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" class="answer" name="answer" />
-                                <span>Ответ...</span>
-                            </label>
-                        </li>
-                    </ul>
+                    <div class="quiz__list">
+                        <div data-id="1" class="option option1">Ответ...</div>
+                        <span></span>
+                        <div data-id="2" class="option option2">Ответ...</div>
+                        <span></span>
+                        <div data-id="3" class="option option3">Ответ...</div>
+                        <span></span>
+                        <div data-id="4" class="option option4">Ответ...</div>
+                        <span></span>
+                    </div>
                 </div>
-                <div class="block__options">
-                    <button class="button options--prev">Назад</button>
+                <div class="block__option">
                     <button class="button options--next">Дальше</button>
                 </div>
             </div>
