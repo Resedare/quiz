@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Reddit+Mono:wght@200..900&display=swap"
+        rel="stylesheet">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <div class="quiz">
+        <div class="quiz__container">
+            <div class="quiz__title">Cosmo-quiz</div>
+
+            <div class="quiz__start-menu">
+                <button class="button quiz__button--start">Начать викторину</button>
+            </div>
+
+            <div class="quiz__block">
+                <div class="block__header">
+                    <h2>Название вопроса</h2>
+                    <div class="block__current-question">1/5</div>
+                </div>
+                <div class="block__questions">
+                    <ul class="quiz__list" id="list">
+                        <li>
+                            <label>
+                                <input type="radio" class="answer" name="answer" />
+                                <span>Ответ...</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" class="answer" name="answer" />
+                                <span>Ответ...</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" class="answer" name="answer" />
+                                <span>Ответ...</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" class="answer" name="answer" />
+                                <span>Ответ...</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block__options">
+                    <button class="button options--prev">Назад</button>
+                    <button class="button options--next">Дальше</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

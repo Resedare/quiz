@@ -1,0 +1,113 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(img/backgroundquiz.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Reddit Mono", monospace;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.quiz {
+    display: flex;
+    align-items: center;
+}
+
+.quiz__container {
+    background-color: rgb(39, 36, 41);
+    box-shadow: 0px 0px 19px 4px rgba(255, 255, 255, 0.07);
+    width: 700px;
+    height: 600px;
+    padding: 20px;
+    max-width: 95vw;
+    max-height: 95vh;
+}
+
+.quiz__title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.quiz__start-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+.block__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.block__questions {
+    margin-bottom: 50px;
+}
+
+.quiz__list {
+    list-style: none;
+    font-size: 1.3rem;
+}
+
+.quiz__list label {
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    border: 1px solid white;
+    transition: 0.2s;
+}
+
+.quiz__list label:hover {
+    background-color: rgb(56, 52, 59);
+}
+
+.block__options {
+    display: flex;
+    justify-content: center;
+}
+
+.block__options button:not(:first-child) {
+    margin-left: 40px;
+}
+
+.button {
+    font-size: 2rem;
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    transition: 0.2s;
+}
+
+.button:hover {
+    background-color: rgb(138, 131, 141)
+}
+
+.button.quiz__button--start {
+    height: 70px;
+    width: 250px;
+}
+
+.correct {
+    border: 1px solid rgb(56, 201, 104);
+    background-color: green;
+}
+.incorrect {
+    background-color: red;
+}
