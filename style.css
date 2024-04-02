@@ -12,22 +12,66 @@ body {
     background-size: cover;
     font-family: "Reddit Mono", monospace;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+}
+
+.quiz-logo {
+    height: 40px;
+    text-align: center;
+    background-color: rgb(56, 52, 59, 0.7);
 }
 
 .quiz {
     display: flex;
     align-items: center;
+
+}
+
+.quiz.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.quiz-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.quiz-card {
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    height: 600px;
+    background-color: rgb(39, 36, 41);
+    border-radius: 15px;
+}
+
+.quiz-card__header h2 {
+    margin-bottom: 20px;
+}
+
+.quiz-card__header img {
+    margin-bottom: 20px;
+}
+
+.quiz-description {
+    margin-bottom: 30px;
+    height: 150px;
+}
+
+.quiz-card__inner button {
+    margin-top: 20px;
 }
 
 .quiz__container {
     background-color: rgb(39, 36, 41);
     box-shadow: 0px 0px 19px 4px rgba(255, 255, 255, 0.07);
     width: 700px;
-    height: 700px;
+    min-height: 700px;
     padding: 20px;
     max-width: 95vw;
     max-height: 95vh;
@@ -53,6 +97,10 @@ body {
     font-size: 2rem;
     margin-bottom: 20px;
     flex-wrap: wrap;
+}
+
+.question-name {
+    font-size: 2rem;
 }
 
 .block__questions {
