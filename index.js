@@ -171,23 +171,23 @@ startButton.addEventListener('click', function (e) { // старт квиза
 
     let data;
     switch (startButton.dataset.name) {
-        case 'earth':
+        case 'Земля':
             data = questionsEarth;
             break;
-        case 'moon':
+        case 'Луна':
             data = questionsMoon;
             break;
-        case 'space':
+        case 'Космос':
             data = questionsSpace;
             break;
     }
     startQuiz(data);
 })
 
-function startQuiz(data) {
+function startQuiz(data) { // функция старта квиза и генерации вопросов
     randomQuestion(data)
 
-    const validate = () => {
+    const validate = () => { // валидация, проверка выбора ответов
         if (!optionElements[0].classList.contains('disabled')) {
             alert('Вам нужно выбрать один из вариантов ответа')
         } else {
@@ -195,13 +195,23 @@ function startQuiz(data) {
             enableOptions(data);
         }
     }
-    
+
     btnNext.addEventListener('click', validate)
     btnBack.addEventListener('click', () => {
         window.location.reload()
     })
+    function quizOver(data) { // конец квиза
+        modal.classList.remove('hide')
+        const result = document.querySelector('.quiz-result');
+        result.innerHTML = `Ваш результат ${score} из ${data.length}`
+    }
+    for (option of optionElements) { // событие при нажатии на ответ
+        option.addEventListener('click', e => {
+            checkAnswer(e, data);
+        })
+    }
 }
-for (button of chooseButton) {
+for (button of chooseButton) { // выбор квиза
     button.addEventListener('click', function (e) {
         e.preventDefault()
 
@@ -210,6 +220,8 @@ for (button of chooseButton) {
         quizWindow.classList.remove('hide')
         quizWindow.classList.add('active')
     })
+
+
 }
 const optionElements = document.querySelectorAll('.option')
 
@@ -221,6 +233,8 @@ const option1 = document.querySelector('.option1'), // все ответы
 const questionName = document.querySelector('.question-name'), // название и текущий вопрос
     numberOfQuestion = document.querySelector('.number-of-question'),
     numberOfAllQuestions = document.querySelector('.number-of-all-questions');
+
+const quizTitle = document.querySelector('.quiz__title');
 
 const btnNext = document.querySelector('.options--next'); // кнопка далее
 const btnBack = document.querySelector('.result-button'); // кнопка вернуться
@@ -234,7 +248,8 @@ let score = 0; // итого
 
 const correctAnswer = document.querySelector('.correct') // верный ответ
 
-function load(data) {
+function load(data) { // загрузка всех вопросов
+    quizTitle.innerHTML = startButton.dataset.name
     numberOfAllQuestions.innerHTML = data.length;
 
     questionName.innerHTML = data[indexOfQuestion].question;
@@ -249,7 +264,7 @@ function load(data) {
 }
 let completedAnswers = [];
 
-function randomQuestion(data) {
+function randomQuestion(data) { // генерация рандомных вопросов из массива
     let randomNumber = Math.floor(Math.random() * data.length);
 
     if (completedAnswers.length === data.length) {
@@ -266,39 +281,25 @@ function randomQuestion(data) {
     load(data);
     completedAnswers.push(indexOfQuestion);
 }
-
-
-function quizOver() {
-    modal.classList.remove('hide')
-    const result = document.querySelector('.quiz-result');
-    result.innerHTML = `Ваш результат ${score} из ${questionsMoon.length}`
+function disableOptions(data) {  // отключение других ответов при выбборе
+    optionElements.forEach(item => {
+        item.classList.add('disabled');
+        if (item.dataset.id == data[indexOfQuestion].correct) {
+            item.classList.add('correct');
+        }
+    })
 }
-
-const checkAnswer = el => {
-    if (el.target.dataset.id == questionsMoon[indexOfQuestion].correct) {
+function enableOptions() { // включение ответов
+    optionElements.forEach(item => {
+        item.classList.remove('disabled', 'correct', 'incorrect');
+    })
+}
+const checkAnswer = (el, data) => { // проверка правильности ответа
+    if (el.target.dataset.id == data[indexOfQuestion].correct) {
         el.target.classList.add('correct');
         score++;
     } else {
         el.target.classList.add('incorrect')
     }
-    disableOptions()
+    disableOptions(data)
 }
-function disableOptions() {
-    optionElements.forEach(item => {
-        item.classList.add('disabled');
-        if (item.dataset.id == questionsMoon[indexOfQuestion].correct) {
-            item.classList.add('correct');
-        }
-    })
-}
-function enableOptions() {
-    optionElements.forEach(item => {
-        item.classList.remove('disabled', 'correct', 'incorrect');
-    })
-}
-for (option of optionElements) {
-    option.addEventListener('click', e => {
-        checkAnswer(e);
-    })
-}
-
