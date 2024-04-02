@@ -23,7 +23,6 @@ body {
 .quiz {
     display: flex;
     align-items: center;
-
 }
 
 .quiz.active {
@@ -71,10 +70,9 @@ body {
     background-color: rgb(39, 36, 41);
     box-shadow: 0px 0px 19px 4px rgba(255, 255, 255, 0.07);
     width: 700px;
-    min-height: 700px;
-    padding: 20px;
+    min-height: 650px;
     max-width: 95vw;
-    max-height: 95vh;
+    padding: 20px;
 }
 
 .quiz__title {
@@ -104,7 +102,7 @@ body {
 }
 
 .block__questions {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .quiz__list {

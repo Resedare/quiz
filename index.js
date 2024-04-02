@@ -102,6 +102,31 @@ const questionsSpace = [
         options: ["Стационарная модель", "Теория Великого взрыва", "Теория суперструн", "Квантовая теория гравитации"],
         correct: 2,
     },
+    {
+        question: "Какая галактика является самой близкой к Млечному Пути?",
+        options: ["Туманность Андромеды", "Галактика Треугольника", "Галактика Вирго A", "Галактика Центавра A"],
+        correct: 1,
+    },
+    {
+        question: "Какой тип галактики представляет собой Млечный Путь?",
+        options: ["Спиральная", "Эллиптическая", "Неправильная", "Линзообразная"],
+        correct: 1,
+    },
+    {
+        question: "Что такое квазар?",
+        options: ["Звезда с высокой светимостью", "Сверхмассивная черная дыра", "Древнее облако газа", "Маленькая галактика"],
+        correct: 2,
+    },
+    {
+        question: "Какое название носит галактика, которая сталкивается с Млечным Путём?",
+        options: ["Галактика Водоворот", "Магелланово Облако", "Галактика Андромеды", "Галактика Сомбреро"],
+        correct: 3,
+    },
+    {
+        question: "Какой тип галактик является наиболее распространенным во Вселенной?",
+        options: ["Спиральные галактики", "Эллиптические галактики", "Неправильные галактики", "Линзообразные галактики"],
+        correct: 2,
+    },
 ];
 
 const questionsEarth = [
@@ -185,6 +210,23 @@ startButton.addEventListener('click', function (e) { // старт квиза
 })
 
 function startQuiz(data) { // функция старта квиза и генерации вопросов
+    function randomQuestion(data) { // генерация рандомных вопросов из массива
+        let randomNumber = Math.floor(Math.random() * data.length);
+    
+        if (completedAnswers.length === data.length) {
+            quizOver();
+            return;
+        }
+    
+        if (completedAnswers.includes(randomNumber)) {
+            randomQuestion(data);
+            return;
+        }
+    
+        indexOfQuestion = randomNumber;
+        load(data);
+        completedAnswers.push(indexOfQuestion);
+    }
     randomQuestion(data)
 
     const validate = () => { // валидация, проверка выбора ответов
@@ -200,9 +242,10 @@ function startQuiz(data) { // функция старта квиза и гене
     btnBack.addEventListener('click', () => {
         window.location.reload()
     })
-    function quizOver(data) { // конец квиза
+    function quizOver() { // конец квиза
         modal.classList.remove('hide')
         const result = document.querySelector('.quiz-result');
+        
         result.innerHTML = `Ваш результат ${score} из ${data.length}`
     }
     for (option of optionElements) { // событие при нажатии на ответ
@@ -211,7 +254,7 @@ function startQuiz(data) { // функция старта квиза и гене
         })
     }
 }
-for (button of chooseButton) { // выбор квиза
+for (let button of chooseButton) { // выбор квиза
     button.addEventListener('click', function (e) {
         e.preventDefault()
 
@@ -220,8 +263,6 @@ for (button of chooseButton) { // выбор квиза
         quizWindow.classList.remove('hide')
         quizWindow.classList.add('active')
     })
-
-
 }
 const optionElements = document.querySelectorAll('.option')
 
@@ -232,7 +273,8 @@ const option1 = document.querySelector('.option1'), // все ответы
 
 const questionName = document.querySelector('.question-name'), // название и текущий вопрос
     numberOfQuestion = document.querySelector('.number-of-question'),
-    numberOfAllQuestions = document.querySelector('.number-of-all-questions');
+    numberOfAllQuestions = document.querySelector('.number-of-all-questions'),
+    amountOfQuestion = document.querySelectorAll('.question-amount');
 
 const quizTitle = document.querySelector('.quiz__title');
 
@@ -247,7 +289,19 @@ let indexOfPage = 0; // текущая страница
 let score = 0; // итого
 
 const correctAnswer = document.querySelector('.correct') // верный ответ
-
+for (let amount of amountOfQuestion) {
+    switch (amount.dataset.name) {
+        case 'Земля':
+            amount.innerHTML = `Количество вопросов: ${questionsEarth.length}`;
+            break;
+        case 'Луна':
+            amount.innerHTML = `Количество вопросов: ${questionsMoon.length}`;
+            break;
+        case 'Космос':
+            amount.innerHTML = `Количество вопросов: ${questionsSpace.length}`;
+            break;
+    }
+}
 function load(data) { // загрузка всех вопросов
     quizTitle.innerHTML = startButton.dataset.name
     numberOfAllQuestions.innerHTML = data.length;
@@ -264,23 +318,7 @@ function load(data) { // загрузка всех вопросов
 }
 let completedAnswers = [];
 
-function randomQuestion(data) { // генерация рандомных вопросов из массива
-    let randomNumber = Math.floor(Math.random() * data.length);
 
-    if (completedAnswers.length === data.length) {
-        quizOver();
-        return;
-    }
-
-    if (completedAnswers.includes(randomNumber)) {
-        randomQuestion(data);
-        return;
-    }
-
-    indexOfQuestion = randomNumber;
-    load(data);
-    completedAnswers.push(indexOfQuestion);
-}
 function disableOptions(data) {  // отключение других ответов при выбборе
     optionElements.forEach(item => {
         item.classList.add('disabled');
