@@ -8,7 +8,7 @@
 
 body {
     background: url(img/backgroundquiz.jpg);
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
     font-family: "Reddit Mono", monospace;
     color: white;
@@ -29,7 +29,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 95vh;
     position: relative;
 }
 
@@ -47,6 +47,7 @@ body {
     height: 600px;
     background-color: rgb(39, 36, 41);
     border-radius: 15px;
+    overflow: hidden;
 }
 
 .quiz-card__header h2 {
@@ -57,12 +58,12 @@ body {
     margin-bottom: 20px;
 }
 
-.quiz-description {
+.quiz-card__description {
     margin-bottom: 30px;
     height: 150px;
 }
 
-.quiz-card__inner button {
+.quiz-card__footer {
     margin-top: 20px;
 }
 
@@ -70,7 +71,7 @@ body {
     background-color: rgb(39, 36, 41);
     box-shadow: 0px 0px 19px 4px rgba(255, 255, 255, 0.07);
     width: 700px;
-    min-height: 650px;
+    min-height: 350px;
     max-width: 95vw;
     padding: 20px;
 }
@@ -83,9 +84,17 @@ body {
 
 .quiz__start-menu {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 50%;
+}
+
+.quiz__start-rules {
+    font-size: 1.4rem;
+    line-height: 48px;
+    list-style: disc;
+    margin-bottom: 30px;
 }
 
 .block__header {
@@ -141,34 +150,11 @@ body {
     background-color: rgb(138, 131, 141)
 }
 
-.button.quiz__button--start {
+.start-button {
     height: 70px;
     width: 250px;
 }
 
-.correct {
-    background-color: green;
-}
-
-.correct:hover {
-    background-color: rgb(0, 87, 0);
-}
-
-.incorrect {
-    background-color: red;
-}
-
-.incorrect:hover {
-    background-color: rgb(194, 0, 0);
-}
-
-.disabled {
-    pointer-events: none;
-}
-
-.hide {
-    display: none;
-}
 
 .quiz-over__modal {
     border-radius: 20px;
@@ -199,4 +185,29 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+/* Классы состояния */
+.correct {
+    background-color: green;
+}
+
+.correct:hover {
+    background-color: rgb(0, 87, 0);
+}
+
+.incorrect {
+    background-color: red;
+}
+
+.incorrect:hover {
+    background-color: rgb(194, 0, 0);
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.hide {
+    display: none;
 }

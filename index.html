@@ -17,44 +17,47 @@
     <div class="quiz-logo">
         <h1 class="quiz-logo__text">Cosmo-quiz</h1>
     </div>
+
     <div class="quiz-list">
+        <!-- Блок карточки -->
         <div class="quiz-card">
             <div class="quiz-card__header">
-                <h2>Луна</h2>
-                <img src="img/moonquiz.jpg" alt="" width="350" height="200">
-                <p class="quiz-description">Присоединяйтесь к путешествию по загадочному спутнику Земли — Луне. Этот
+                <h2 class="quiz-card__title">Луна</h2>
+                <img class="quiz-card__image" src="img/moonquiz.jpg" alt="" width="350" height="200">
+                <p class="quiz-card__description">Присоединяйтесь к путешествию по загадочному спутнику Земли — Луне.
+                    Этот
                     квиз познакомит вас с удивительными фактами о лунных циклах, исследованиях и мистических явлениях,
                     которые делают Луну одним из самых интересных объектов для изучения.</p>
-                <p data-name="Луна" class="question-amount"></p>
+                <p data-name="Луна" class="quiz-card__questions-count"></p>
             </div>
-            <div class="quiz-card__inner">
-                <button data-name="Луна" class="button button--choose">Выбрать</button>
+            <div class="quiz-card__footer">
+                <button data-name="Луна" class="button quiz-card__choose-button">Выбрать</button>
             </div>
         </div>
         <div class="quiz-card">
             <div class="quiz-card__header">
                 <h2>Земля</h2>
                 <img src="img/earthquiz.jpg" alt="" width="350" height="200">
-                <p class="quiz-description">Исследуйте разнообразие и красоту нашего родного мира в этом квизе. От
+                <p class="quiz-card__description">Исследуйте разнообразие и красоту нашего родного мира в этом квизе. От
                     океанских глубин до космических высот, узнайте больше о сложных системах, которые поддерживают жизнь
                     на Земле и делают её уникальным местом во Вселенной.</p>
-                <p data-name="Земля" class="question-amount"></p>
+                <p data-name="Земля" class="quiz-card__questions-count"></p>
             </div>
-            <div class="quiz-card__inner">
-                <button data-name="Земля" class="button button--choose">Выбрать</button>
+            <div class="quiz-card__footer">
+                <button data-name="Земля" class="button quiz-card__choose-button">Выбрать</button>
             </div>
         </div>
         <div class="quiz-card">
             <div class="quiz-card__header">
                 <h2>Космос</h2>
                 <img src="img/galacticquiz.jpg" alt="" width="350" height="200">
-                <p class="quiz-description">Откройте для себя таинственные глубины космоса в этом звёздном квизе.
+                <p class="quiz-card__description">Откройте для себя таинственные глубины космоса в этом звёздном квизе.
                     Отражая бесконечное множество галактик, звёзд и темных тайн, этот квиз возьмёт вас в путешествие по
                     самым захватывающим уголкам Вселенной.</p>
-                <p data-name="Космос" class="question-amount"></p>
+                <p data-name="Космос" class="quiz-card__questions-count"></p>
             </div>
-            <div class="quiz-card__inner">
-                <button data-name="Космос" class="button button--choose">Выбрать</button>
+            <div class="quiz-card__footer">
+                <button data-name="Космос" class="button quiz-card__choose-button">Выбрать</button>
             </div>
         </div>
     </div>
@@ -62,9 +65,13 @@
     <div class="quiz hide">
         <div class="quiz__container">
             <div class="quiz__title">Cosmo-quiz</div>
-
             <div class="quiz__start-menu">
-                <button data-name="" class="button quiz__button--start">Начать викторину</button>
+                <ul class="quiz__start-rules">
+                    <li>Не спешите</li>
+                    <li>У каждого вопроса только 1 вариант ответа</li>
+                    <li>Вернуться к прошлому вопросу нельзя</li>
+                </ul>
+                <button data-name="" class="button start-button">Начать викторину</button>
             </div>
 
             <div class="quiz__block hide">
