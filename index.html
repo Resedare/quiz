@@ -23,7 +23,7 @@
         <div class="quiz-card">
             <div class="quiz-card__header">
                 <h2 class="quiz-card__title">Луна</h2>
-                <img class="quiz-card__image" src="img/moonquiz.jpg" alt="" width="350" height="200">
+                <img class="quiz-card__image" src="img/moonquiz.jpg" alt="moon" width="350" height="200">
                 <p class="quiz-card__description">Присоединяйтесь к путешествию по загадочному спутнику Земли — Луне.
                     Этот
                     квиз познакомит вас с удивительными фактами о лунных циклах, исследованиях и мистических явлениях,
@@ -37,7 +37,7 @@
         <div class="quiz-card">
             <div class="quiz-card__header">
                 <h2>Земля</h2>
-                <img src="img/earthquiz.jpg" alt="" width="350" height="200">
+                <img class="quiz-card__image" src="img/earthquiz.jpg" alt="earth" width="350" height="200">
                 <p class="quiz-card__description">Исследуйте разнообразие и красоту нашего родного мира в этом квизе. От
                     океанских глубин до космических высот, узнайте больше о сложных системах, которые поддерживают жизнь
                     на Земле и делают её уникальным местом во Вселенной.</p>
@@ -50,7 +50,7 @@
         <div class="quiz-card">
             <div class="quiz-card__header">
                 <h2>Космос</h2>
-                <img src="img/galacticquiz.jpg" alt="" width="350" height="200">
+                <img class="quiz-card__image" src="img/galacticquiz.jpg" alt="galactic" width="350" height="200">
                 <p class="quiz-card__description">Откройте для себя таинственные глубины космоса в этом звёздном квизе.
                     Отражая бесконечное множество галактик, звёзд и темных тайн, этот квиз возьмёт вас в путешествие по
                     самым захватывающим уголкам Вселенной.</p>
@@ -67,9 +67,9 @@
             <div class="quiz__title">Cosmo-quiz</div>
             <div class="quiz__start-menu">
                 <ul class="quiz__start-rules">
-                    <li>Не спешите</li>
-                    <li>У каждого вопроса только 1 вариант ответа</li>
-                    <li>Вернуться к прошлому вопросу нельзя</li>
+                    <li>1. Не спешите</li>
+                    <li>2. У каждого вопроса только 1 вариант ответа</li>
+                    <li>3. Вернуться к прошлому вопросу нельзя</li>
                 </ul>
                 <button data-name="" class="button start-button">Начать викторину</button>
             </div>
@@ -78,7 +78,9 @@
                 <div class="block__header">
                     <h2 class="question-name"></h2>
                     <div class="block__current-question">
-                        <span class="number-of-question"></span>/<span class="number-of-all-questions"></span>
+                        <div class="question-timer"></div>
+                        <div class="question-numbers"><span class="number-of-question"></span>/<span
+                                class="number-of-all-questions"></span></div>
                     </div>
                 </div>
                 <div class="block__questions">

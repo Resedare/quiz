@@ -17,6 +17,8 @@ let indexOfPage = 0; // текущая страница
 
 let score = 0; // итого
 
+let intervalId; // интервал для таймера
+
 const correctAnswer = document.querySelector('.correct') // верный ответ
 
 const optionElements = document.querySelectorAll('.option')
@@ -65,6 +67,7 @@ function startQuiz(data) {
         completedAnswers.push(indexOfQuestion);
     }
     randomQuestion(data)
+
     function toggleOptions(isEnabled) {
         optionElements.forEach(item => {
             if (isEnabled) {
@@ -98,10 +101,15 @@ function startQuiz(data) {
     }
 
     function quizOver() { // конец квиза
-        modal.classList.remove('hide')
         const result = document.querySelector('.quiz-result');
-
+        modal.classList.remove('hide')
+        btnNext.setAttribute('disabled', true)
         result.innerHTML = `Ваш результат ${score} из ${data.length}`
+        optionElements.forEach(item => {
+            item.classList.add('disabled')
+        })
+
+        clearInterval(intervalId)
     }
 
     const validate = () => { // валидация, проверка выбора ответов
@@ -112,14 +120,33 @@ function startQuiz(data) {
             toggleOptions(true);
         }
     }
+    function timerId() {
+        let time = 180;
+        const timer = document.querySelector('.question-timer');
+        const intervalId = setInterval(updateCountdown, 1000);
 
+        function updateCountdown() {
+            if (time <= 0) {
+                clearInterval(intervalId);
+                timer.innerHTML = "Время вышло!";
+                quizOver();
+                return;
+            }
+
+            const minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timer.innerHTML = `${minutes}:${seconds}`;
+            time--; // Уменьшаем время
+        }
+        updateCountdown(); // Начальный вызов для установки таймера
+    }
     btnNext.addEventListener('click', validate)
     btnBack.addEventListener('click', () => {
         window.location.reload()
     })
+    timerId()
 }
-
-
 
 const chooseButton = document.querySelectorAll('.quiz-card__choose-button')
 for (let button of chooseButton) { // выбор квиза

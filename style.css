@@ -18,6 +18,7 @@ body {
     height: 40px;
     text-align: center;
     background-color: rgb(56, 52, 59, 0.7);
+    margin-bottom: 20px;
 }
 
 .quiz {
@@ -26,10 +27,10 @@ body {
 }
 
 .quiz.active {
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 95vh;
     position: relative;
 }
 
@@ -54,7 +55,10 @@ body {
     margin-bottom: 20px;
 }
 
-.quiz-card__header img {
+.quiz-card__image {
+    width: 100%;
+    height: 100%;
+    max-height: 200px;
     margin-bottom: 20px;
 }
 
@@ -73,13 +77,13 @@ body {
     width: 700px;
     min-height: 350px;
     max-width: 95vw;
-    padding: 20px;
+    padding: 15px;
 }
 
 .quiz__title {
     font-size: 3rem;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .quiz__start-menu {
@@ -93,17 +97,27 @@ body {
 .quiz__start-rules {
     font-size: 1.4rem;
     line-height: 48px;
-    list-style: disc;
+    list-style: none;
     margin-bottom: 30px;
 }
 
 .block__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     font-size: 2rem;
     margin-bottom: 20px;
     flex-wrap: wrap;
+}
+
+.question-timer {
+    display: flex;
+}
+
+.question-timer__minutes::after {
+    content: ":";
+}
+
+.block__current-question {
+    display: flex;
+    justify-content: space-between;
 }
 
 .question-name {
@@ -150,12 +164,28 @@ body {
     background-color: rgb(138, 131, 141)
 }
 
+.button:disabled {
+    cursor: not-allowed;
+}
+
 .start-button {
     height: 70px;
     width: 250px;
 }
 
 
+.result-button {
+    margin-top: 20px;
+    background-color: rgb(56, 52, 59);
+    color: white;
+    width: 140px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Модальное окно*/
 .quiz-over__modal {
     border-radius: 20px;
     color: rgb(56, 52, 59);
@@ -174,17 +204,6 @@ body {
 .quiz-over__inner {
     margin-top: 20px;
     text-align: center;
-}
-
-.result-button {
-    margin-top: 20px;
-    background-color: rgb(56, 52, 59);
-    color: white;
-    width: 140px;
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
 }
 
 /* Классы состояния */
