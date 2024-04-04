@@ -67,10 +67,21 @@
             <div class="quiz__title">Cosmo-quiz</div>
             <div class="quiz__start-menu">
                 <ul class="quiz__start-rules">
-                    <li>1. Не спешите</li>
+                    <li>1. Таймер - от 1,5 до 3 минут</li>
                     <li>2. У каждого вопроса только 1 вариант ответа</li>
                     <li>3. Вернуться к прошлому вопросу нельзя</li>
                 </ul>
+                <div class="quiz__start-change-difficulty">
+                    <label for="easyquizzes">Легко
+                        <input class="quiz__start-difficulty" type="radio" name="difficulty" id="easyquizzes" checked>
+                    </label>
+                    <label for="mediumquizzes">Средне
+                        <input class="quiz__start-difficulty" type="radio" name="difficulty" id="mediumquizzes">
+                    </label>
+                    <label for="hardquizzes">Сложно
+                        <input class="quiz__start-difficulty" type="radio" name="difficulty" id="hardquizzes">
+                    </label>
+                </div>
                 <button data-name="" class="button start-button">Начать викторину</button>
             </div>
 

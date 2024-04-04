@@ -28,23 +28,36 @@ const questionName = document.querySelector('.question-name'), // названи
     numberOfAllQuestions = document.querySelector('.number-of-all-questions'),
     amountOfQuestion = document.querySelectorAll('.question-amount');
 
+const difficulty = document.querySelectorAll('.quiz__start-difficulty');
+let selectedDifficulty;
+
+difficulty.forEach(item => {
+    item.addEventListener('click', () => {
+        difficulty.forEach(el => el.parentElement.classList.remove('chosen'));
+        selectedDifficulty = item.getAttribute('id')
+        item.parentElement.classList.add('chosen');
+    }
+    );
+});
+async function loadQuizData(quizName, difficulty) {
+    const response = await fetch(`${difficulty}.json`);
+    const quizzes = await response.json();
+
+    return quizzes[quizName]
+}
 startButton.addEventListener('click', async function (e) { // старт квиза
     e.preventDefault();
 
     startMenu.classList.add('hide')
     quizMenu.classList.remove('hide')
-
     const selectedQuizName = startButton.dataset.name;
-    const data = await loadQuizData(selectedQuizName);
+
+
+    const data = await loadQuizData(selectedQuizName, selectedDifficulty);
     startQuiz(data);
 })
 
-async function loadQuizData(quizName) {
-    const response = await fetch("quizzes.json");
-    const quizzes = await response.json();
 
-    return quizzes[quizName]
-}
 
 function startQuiz(data) {
     let completedAnswers = [];            // функция старта квиза и генерации вопросов
@@ -121,7 +134,18 @@ function startQuiz(data) {
         }
     }
     function timerId() {
-        let time = 180;
+        let time;
+        switch (selectedDifficulty) {
+            case 'easyquizzes':
+                time = 90;
+                break;
+            case 'mediumquizzes':
+                time = 120;
+                break;
+            case 'harduizzes':
+                time = 180;
+                break;
+        }
         const timer = document.querySelector('.question-timer');
         const intervalId = setInterval(updateCountdown, 1000);
 
@@ -162,12 +186,12 @@ for (let button of chooseButton) { // выбор квиза
 }
 
 async function loadQuizDataUI() {
-    const response = await fetch("quizzes.json");
+    const response = await fetch("easyquizzes.json");
     const quizzes = await response.json();
 
     Object.keys(quizzes).forEach(quizName => {
         const numOfQuestions = quizzes[quizName].length;
-        document.querySelector(`.quiz-card__questions-count[data-name="${quizName}"]`).textContent = `Количество вопросов: ${numOfQuestions}`;
+        document.querySelector(`.quiz-card__questions-count[data-name="${quizName}"]`).textContent = `Количество вопросов: от ${numOfQuestions}`;
     })
 }
 
