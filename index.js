@@ -8,7 +8,7 @@ const quizWindow = document.querySelector('.quiz')
 const quizTitle = document.querySelector('.quiz__title');
 
 const btnNext = document.querySelector('.options--next'); // кнопка далее
-const btnBack = document.querySelector('.result-button'); // кнопка вернуться
+const btnBack = document.querySelectorAll('.back-button'); // кнопка вернуться
 
 const modal = document.querySelector('.quiz-over__modal'); // модальное окно
 
@@ -47,14 +47,15 @@ async function loadQuizData(quizName, difficulty) {
 }
 startButton.addEventListener('click', async function (e) { // старт квиза
     e.preventDefault();
-
-    startMenu.classList.add('hide')
-    quizMenu.classList.remove('hide')
-    const selectedQuizName = startButton.dataset.name;
-
-
-    const data = await loadQuizData(selectedQuizName, selectedDifficulty);
-    startQuiz(data);
+    if (selectedDifficulty === undefined) {
+        alert('Выберите сложность')
+    } else {
+        const selectedQuizName = startButton.dataset.name;
+        const data = await loadQuizData(selectedQuizName, selectedDifficulty);
+        startQuiz(data);
+        startMenu.classList.add('hide')
+        quizMenu.classList.remove('hide')
+    }
 })
 
 
@@ -142,7 +143,7 @@ function startQuiz(data) {
             case 'mediumquizzes':
                 time = 120;
                 break;
-            case 'harduizzes':
+            case 'hardquizzes':
                 time = 180;
                 break;
         }
@@ -166,12 +167,12 @@ function startQuiz(data) {
         updateCountdown(); // Начальный вызов для установки таймера
     }
     btnNext.addEventListener('click', validate)
-    btnBack.addEventListener('click', () => {
-        window.location.reload()
-    })
+
     timerId()
 }
-
+btnBack.forEach(item => item.addEventListener('click', () => {
+    window.location.reload()
+}))
 const chooseButton = document.querySelectorAll('.quiz-card__choose-button')
 for (let button of chooseButton) { // выбор квиза
     button.addEventListener('click', function (e) {

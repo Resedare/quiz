@@ -141,6 +141,17 @@ body {
     display: none;
 }
 
+.quiz__start-footer {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.quiz__start-footer button {
+    margin-bottom: 10px;
+}
+
 .block__header {
     font-size: 2rem;
     margin-bottom: 20px;
@@ -193,8 +204,8 @@ body {
 .button {
     cursor: pointer;
     font-size: 2rem;
-    width: 200px;
-    height: 60px;
+    min-width: 200px;
+    height: 70px;
     border-radius: 10px;
     border: none;
     transition: 0.2s;
@@ -207,12 +218,6 @@ body {
 .button:disabled {
     cursor: not-allowed;
 }
-
-.start-button {
-    height: 70px;
-    width: 250px;
-}
-
 
 .result-button {
     margin-top: 20px;
