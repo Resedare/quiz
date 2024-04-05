@@ -4,7 +4,6 @@ const startMenu = document.querySelector('.quiz__start-menu')
 const quizList = document.querySelector('.quiz-list')
 const quizWindow = document.querySelector('.quiz')
 
-
 const quizTitle = document.querySelector('.quiz__title');
 
 const btnNext = document.querySelector('.options--next'); // кнопка далее
@@ -57,8 +56,6 @@ startButton.addEventListener('click', async function (e) { // старт кви�
         quizMenu.classList.remove('hide')
     }
 })
-
-
 
 function startQuiz(data) {
     let completedAnswers = [];            // функция старта квиза и генерации вопросов
@@ -116,14 +113,15 @@ function startQuiz(data) {
 
     function quizOver() { // конец квиза
         const result = document.querySelector('.quiz-result');
+        const timer = document.querySelector('.question-timer');
+
         modal.classList.remove('hide')
         btnNext.setAttribute('disabled', true)
         result.innerHTML = `Ваш результат ${score} из ${data.length}`
-        optionElements.forEach(item => {
-            item.classList.add('disabled')
-        })
-
+        
+        timer.innerHTML = "Quiz завершен!";
         clearInterval(intervalId)
+    
     }
 
     const validate = () => { // валидация, проверка выбора ответов
@@ -148,7 +146,7 @@ function startQuiz(data) {
                 break;
         }
         const timer = document.querySelector('.question-timer');
-        const intervalId = setInterval(updateCountdown, 1000);
+        intervalId = setInterval(updateCountdown, 1000);
 
         function updateCountdown() {
             if (time <= 0) {
@@ -209,7 +207,5 @@ function load(data) { // загрузка всех вопросов
     indexOfPage++; // увеличение индекса страницы
 }
 
-
-
-
 document.addEventListener("DOMContentLoaded", loadQuizDataUI);
+
